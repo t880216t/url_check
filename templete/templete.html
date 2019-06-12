@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="GBK"?>
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+    <html lang="en">
+        <head>
+            <meta charset="GBK">
+            <title>外链检查报告</title>
+            <meta name="外链检查报告">
+            <style type="text/css" media="screen">
+                body {
+
+                }
+
+                table {
+                    font-size: 100%;
+                }
+
+                pre {
+                    white-space: pre-wrap;
+                }
+
+                a { text-decoration:none}
+
+                /* -- heading ---------------------------------------------------------------------- */
+                h1 {
+                    font-size: 16pt;
+                    color: gray;
+                }
+
+                .heading {
+                    margin-top: 0ex;
+                    margin-bottom: 1ex;
+                }
+
+                .heading .attribute {
+                    margin-top: 1ex;
+                    margin-bottom: 0;
+                }
+
+                .heading .description {
+                    margin-top: 4ex;
+                    font-size: 20px;
+                    font-weight: 500;
+                    color: rgba(0,0,0,.85)
+                }
+                /* -- css div popup ------------------------------------------------------------------------ */
+
+                /* -- report ------------------------------------------------------------------------ */
+                #result_table {
+                    font-family: "Chinese Quote",-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+                    font-size: 14px;
+                    font-variant: tabular-nums;
+                    line-height: 1.5;
+                    color: rgba(0,0,0,.65);
+                    -webkit-box-sizing: border-box;
+                    box-sizing: border-box;
+                    margin: 0;
+                    padding: 0;
+                    list-style: none;
+                    position: relative;
+                    clear: both;
+                    width: 100%;
+                    border-collapse: separate;
+                    border-spacing: 0px 1px;
+                    text-align: left;
+                    border-radius: 4px 4px 0 0;
+                    border-color: grey;
+                    box-sizing: border-box;
+                }
+                #result_table colgroup{
+                    display: table-column-group;
+                }
+                #result_table tr th{
+                    background: #dfe6e9;
+                    -webkit-transition: background .3s ease;
+                    transition: background .3s ease;
+                    text-align: left;
+                    color: rgba(0,0,0,.85);
+                    font-weight: 500;
+                    padding:10px;
+                    border-bottom: 1px solid #e8e8e8;
+                }
+                #result_table tr td{
+                    padding: 10px;
+                }
+
+                #header_row {
+                    font-weight: bold;
+                    color: white;
+                    background-color: #777;
+                }
+
+                #total_row {
+                    font-weight: bold;
+                }
+
+                .passClass {
+                    background-color: #6c6;
+                }
+                .failClass{
+                    background-color: #e55039
+                }
+                .url_text {
+                    max-width:200px;
+                    width: 200px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+                .pie {
+                    width: 150px;
+                    height: 150px;
+                    border-radius: 50%;
+                    background: #6c6;
+                    background-image: linear-gradient(to right, transparent 50%, #e55039 0);
+                }
+
+                .pie::before {
+                    content: '';
+                    display: block;
+                    margin-left: 50%;
+                    height: 100%;
+                    border-radius: 0 100% 100% 0/50%;
+                    background-color: inherit;
+                    transform-origin: left;
+                    transform: rotate(.01turn);
+                    animation: spin 0.5s linear infinite,
+                                changeBG 1s step-end infinite;
+                    animation-play-state: paused; /* 设置动画为暂停状态 */
+
+                }
+                @keyframes spin{
+                    to {transform: rotate(.5turn)}
+                }
+
+                @keyframes changeBG{
+                    50% {background-color: #e55039;}
+                }
+                .header-container{
+                    display:flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                }
+                .pie-container{
+                    display:flex;
+                    align-items: center;
+                    justify-content:center;
+                    padding:30px 100px 30px 30px;
+                }
+                /* -- ending ---------------------------------------------------------------------- */
+
+            </style>
+        </head>
+        <body>
+            <div class="header-container">
+                <div class='heading'>
+                    <h1 id="title"></h1>
+                    <p id="exc_date" class='attribute'></p>
+                    <p id="exc_dun_time" class='attribute'></p>
+                    <p id="exc_status" class='attribute'></p>
+
+                    <p class='description'>执行详情：</p>
+                </div>
+                <!--<div class="pie-container">-->
+                    <!--<div id="pie" class="pie" data=""></div>-->
+                <!--</div>-->
+            </div>
+
+            <table id='result_table'>
+                <colgroup>
+                    <col align='left'/>
+                    <col align='right'/>
+                    <col align='right'/>
+                    <col align='right'/>
+                    <col align='right'/>
+                    <col align='right'/>
+                </colgroup>
+                <tr id='header_row'>
+                    <th style="color:black;">ID</th>
+                    <th style="color:black;">所属界面</th>
+                    <th style="color:black;">检查链接</th>
+                    <th style="color:black;">所属部门</th>
+                    <th style="color:black;">负责人</th>
+                    <th style="color:black;">状态码</th>
+                    <th style="color:black;">请求耗时</th>
+                </tr>
+            </table>
+        </body>
+        <script language="javascript" type="text/javascript">
+            const style = document.createElement('style');
+            document.head.appendChild(style);
+            const {sheet} = style;
+            /* 使用es6 ... rest/spread操作符 可以将类数组转变为数组 */
+            const ele= document.getElementById('pie')
+            const text=ele.getAttribute("data")
+            sheet.addRule(`.pie:before`,`animation-delay:-${text}s`)
+        </script>
+    </html>
