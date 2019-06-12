@@ -64,7 +64,7 @@ url_data.xls > dep_config    # 部门配置
 - report_type     # 是否只有出错时才通知（1.只有出错时通知，0.都会通知）
 ![TM20190612142559.png](https://upload-images.jianshu.io/upload_images/17067099-7a0945987c2187f7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-url_data.xls > data      # 部门配置
+url_data.xls > data      # 检查链接数据
 - id    # 序号
 - page_name    # 检查的链接所属的页面名称
 - page_url    # 检查的链接所属的页面链接
