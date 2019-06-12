@@ -82,3 +82,5 @@ $ pip install -r requirements.txt
 ``` bash
 $ python run.py
 ```
+更多的测试技术及工具使用，欢迎进群交流：
+![](https://testerhome.com/uploads/photo/2019/80beba6b-1412-45a2-8a9d-394da51a63fb.jpg!large)
