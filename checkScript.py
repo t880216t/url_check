@@ -19,7 +19,7 @@ class Check():
         proxies1 = {'http': proxy1, 'https': proxy1}
         proxies2 = {'http': proxy2, 'https': proxy2}
         headers = {
-            'user-agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36'
+            'user-agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36',
         }
         try:
             try:
@@ -131,7 +131,7 @@ class Check():
             'user_password': mailConfigData['user_password'],
             'mail_From_user': mailConfigData['mail_From_user'],
             'mail_From': mailConfigData['mail_From'],
-            'mail_subject': mailConfigData['mail_subject']+'--总览',
+            'mail_subject': str('{mail_subject}--总览').format(mail_subject=mailConfigData['mail_subject']),
             'mail_to_user': mailConfigData['admin_user'].split(','),
             'mail_cc_user': mailConfigData['admin_cc_user'].split(','),
         }
