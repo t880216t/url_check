@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="GBK"?>
+<?xml version="1.0" encoding="UTF-8"?>
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
     <html lang="en">
         <head>
             <meta charset="GBK">
-            <title>ÍâÁ´¼ì²é±¨¸æ</title>
-            <meta name="ÍâÁ´¼ì²é±¨¸æ">
+            <title>å¤–é“¾æ£€æŸ¥æŠ¥å‘Š</title>
+            <meta name="å¤–é“¾æ£€æŸ¥æŠ¥å‘Š">
             <style type="text/css" media="screen">
                 body {
 
@@ -125,7 +125,7 @@
                     transform: rotate(.01turn);
                     animation: spin 0.5s linear infinite,
                                 changeBG 1s step-end infinite;
-                    animation-play-state: paused; /* ÉèÖÃ¶¯»­ÎªÔİÍ£×´Ì¬ */
+                    animation-play-state: paused; /* è®¾ç½®åŠ¨ç”»ä¸ºæš‚åœçŠ¶æ€ */
 
                 }
                 @keyframes spin{
@@ -158,7 +158,7 @@
                     <p id="exc_dun_time" class='attribute'></p>
                     <p id="exc_status" class='attribute'></p>
 
-                    <p class='description'>Ö´ĞĞÏêÇé£º</p>
+                    <p class='description'>æ‰§è¡Œè¯¦æƒ…ï¼š</p>
                 </div>
                 <!--<div class="pie-container">-->
                     <!--<div id="pie" class="pie" data=""></div>-->
@@ -176,12 +176,12 @@
                 </colgroup>
                 <tr id='header_row'>
                     <th style="color:black;">ID</th>
-                    <th style="color:black;">ËùÊô½çÃæ</th>
-                    <th style="color:black;">¼ì²éÁ´½Ó</th>
-                    <th style="color:black;">ËùÊô²¿ÃÅ</th>
-                    <th style="color:black;">¸ºÔğÈË</th>
-                    <th style="color:black;">×´Ì¬Âë</th>
-                    <th style="color:black;">ÇëÇóºÄÊ±</th>
+                    <th style="color:black;">æ‰€å±ç•Œé¢</th>
+                    <th style="color:black;">æ£€æŸ¥é“¾æ¥</th>
+                    <th style="color:black;">æ‰€å±éƒ¨é—¨</th>
+                    <th style="color:black;">è´Ÿè´£äºº</th>
+                    <th style="color:black;">çŠ¶æ€ç </th>
+                    <th style="color:black;">è¯·æ±‚è€—æ—¶</th>
                 </tr>
             </table>
         </body>
@@ -189,7 +189,7 @@
             const style = document.createElement('style');
             document.head.appendChild(style);
             const {sheet} = style;
-            /* Ê¹ÓÃes6 ... rest/spread²Ù×÷·û ¿ÉÒÔ½«ÀàÊı×é×ª±äÎªÊı×é */
+            /* ä½¿ç”¨es6 ... rest/spreadæ“ä½œç¬¦ å¯ä»¥å°†ç±»æ•°ç»„è½¬å˜ä¸ºæ•°ç»„ */
             const ele= document.getElementById('pie')
             const text=ele.getAttribute("data")
             sheet.addRule(`.pie:before`,`animation-delay:-${text}s`)
