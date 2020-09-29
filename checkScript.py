@@ -4,6 +4,14 @@ from requests.adapters import HTTPAdapter
 from common import emailCommon
 from common.HTMLBuilder import HTMLBuilder
 
+some_urls = [
+    'https://www.eda.admin.ch/countries/china/en/home.html',
+    'https://www.eda.admin.ch/eda/en/home/reps/asia/vchn/embbei.html',
+    'https://www.shangri-la.com/cn/',
+    'https://www.jal.co.jp/en/',
+    'https://www.united.com/en/us',
+]
+
 class Check():
     def __init__(self,data_path,templete_path):
         self.report = []
@@ -19,8 +27,20 @@ class Check():
         proxies1 = {'http': proxy1, 'https': proxy1}
         proxies2 = {'http': proxy2, 'https': proxy2}
         headers = {
-            'user-agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36',
+            'user-agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36',
         }
+        statusCode = 0
+        if data['check_url'] in some_urls:
+            headers = {
+                'user-agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36',
+                'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+                'accept-encoding': 'gzip, deflate, br',
+                'accept-language': 'zh-CN,zh;q=0.9',
+                'sec-fetch-dest': 'document',
+                'sec-fetch-mode': 'navigate',
+                'sec-fetch-site': 'none',
+                'upgrade-insecure-requests': '1',
+            }
         try:
             try:
                 try:
@@ -38,6 +58,7 @@ class Check():
                         raise NameError('oops!')
             except:
                 print('这个链接走的了代理2',data)
+                print('链接:',data['check_url'])
                 res = self.s.get(data['check_url'].replace(' ',''),headers=headers, proxies=proxies2, verify=False, timeout=15,allow_redirects=False)
                 if res.status_code >= 400:
                     print('换代理')
