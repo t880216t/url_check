@@ -156,12 +156,13 @@ class Check():
             'mail_to_user': mailConfigData['admin_user'].split(','),
             'mail_cc_user': mailConfigData['admin_cc_user'].split(','),
         }
+        all_fail_data = [item for item in self.report if item['status'] != 1]
         report_data = {
             'exc_date':exc_date,
             'exc_dun_time':dur_time_str,
             'exc_status':'总计'+ str(total_count)+' 失败 '+ str(fail_count),
             'fail_percent':round(fail_count/total_count, 2),
-            'report_data':self.report,
+            'report_data':all_fail_data,
         }
         report_name = time.strftime('%Y_%m_%d_%H_%M_%S',time.localtime())
         out_path = 'report/'+report_name+'index.html'
